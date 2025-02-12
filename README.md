@@ -45,4 +45,22 @@ fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
 Veillez à fermer la console pour que la configuration soit prise en compte.
 
-2.
+2. Création du projet Expo Go
+
+```
+npx create-expo-app@latest <NOM_PROJET>
+
+// Une fois l'installation d'Expo Go terminé
+cd <NOM_PROJET>
+
+// Démarrage d'Expo Go
+npm run start
+```
+
+3. Démarrage d'Expo Go sur un périphérique extérieur
+
+Pour visualiser son développement sur mobile ou sur tablette nous devons installer le package **expo-dev-client** en lançant
+la commande `npm install expo-dev-client`.
+
+4. Sinon à l'aide d'**Android Studio** il est possible de se créer un périphérique d'essai, mais il faut que la
+virtualisation soit activé sur votre pc.
