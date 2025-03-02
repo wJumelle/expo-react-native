@@ -13,6 +13,9 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  'video.fill': 'ondemand-video',
+  'music.house.fill': 'audiotrack',
+  'doc.fill': 'picture-as-pdf'
 } as Partial<
   Record<
     import('expo-symbols').SymbolViewProps['name'],
