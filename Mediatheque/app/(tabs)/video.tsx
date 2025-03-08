@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -6,14 +6,23 @@ import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 
 import { useVideoPlayer, VideoView } from 'expo-video';
+import { useEvent } from 'expo';
+import { Collapsible } from '@/components/Collapsible';
 
-import assetId from '../../assets/video/video.mp4';
+const videoSource = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+const assetId = require('../../assets/video/nature.mp4');
 
 export default function TabTwoScreen() {
-    const player = useVideoPlayer(assetId, player => {
-        player.loop = true;
-        player.play();
-    });
+  const onlinePlayer = useVideoPlayer(videoSource, player => {
+    player.loop = true;
+  });
+
+  const localPlayer = useVideoPlayer(assetId, player => {
+    player.loop = true;
+  });
+
+  const vOnlineStatus = useEvent(onlinePlayer, 'playingChange', { isPlaying: onlinePlayer.playing });
+  const vLocalStatus = useEvent(localPlayer, 'playingChange', { isPlaying: localPlayer.playing });
 
   return (
     <ParallaxScrollView
@@ -27,10 +36,53 @@ export default function TabTwoScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Vidéo en local</ThemedText>
+        <ThemedText type="title">Gestion des vidéos</ThemedText>
       </ThemedView>
-      <ThemedText>C'est ici qu'on teste les fichiers vidéos en local.</ThemedText>
-      <VideoView player={player} allowsFullscreen allowsPictureInPicture />
+      <ThemedText>C'est ici qu'on teste les différentes façon de charger une vidéo.</ThemedText>
+
+      <Collapsible title="Vidéo à distance">
+        <View style={styles.videoContainer}>
+          <VideoView
+            style={styles.video}
+            player={onlinePlayer}
+            contentFit='contain'
+            allowsFullscreen allowsPictureInPicture />
+        </View>
+        <View style={styles.controlsContainer}>
+          <Button
+            title={vOnlineStatus.isPlaying ? 'Pause' : 'Lecture'}
+            onPress={() => {
+              if (vOnlineStatus.isPlaying) {
+                onlinePlayer.pause();
+              } else {
+                onlinePlayer.play();
+              }
+            }}
+          />
+        </View>
+      </Collapsible>
+
+      <Collapsible title="Vidéo en local">
+        <View style={styles.videoContainer}>
+          <VideoView
+            style={styles.video}
+            player={localPlayer}
+            contentFit='contain'
+            allowsFullscreen allowsPictureInPicture />
+        </View>
+        <View style={styles.controlsContainer}>
+          <Button
+            title={vLocalStatus.isPlaying ? 'Pause' : 'Lecture'}
+            onPress={() => {
+              if (vLocalStatus.isPlaying) {
+                localPlayer.pause();
+              } else {
+                localPlayer.play();
+              }
+            }}
+          />
+        </View>
+      </Collapsible>
     </ParallaxScrollView>
   );
 }
@@ -45,5 +97,18 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+  },
+  videoContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  video: {
+    width: '100%',
+    height: undefined,
+    aspectRatio: 16 / 9,
+  },
+  controlsContainer: {
+    paddingBlock: 10,
   },
 });

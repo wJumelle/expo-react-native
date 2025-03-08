@@ -36,21 +36,21 @@ export default function TabLayout() {
       <Tabs.Screen
         name="video"
         options={{
-          title: 'Vidéo en local',
+          title: 'Vidéos',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="video.fill" color={color} />,
         }}
       />
       <Tabs.Screen
         name="audio"
         options={{
-          title: 'Audio en local',
+          title: 'Audios',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="music.house.fill" color={color} />,
         }}
       />
       <Tabs.Screen
         name="pdf"
         options={{
-          title: 'Pdf en local',
+          title: 'Pdf',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="doc.fill" color={color} />,
         }}
       />
