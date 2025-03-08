@@ -5,30 +5,31 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Collapsible } from '@/components/Collapsible';
-import { useEffect, useState } from 'react';
+
 import { Audio } from 'expo-av';
+import { useEffect, useState } from 'react';
+
+const audioSource = require('../../assets/audio/strange.mp3');
 
 export default function TabTwoScreen() {
-  const [ sound, setSound ] = useState();
+  const [localSound, setLocalSound] = useState();
 
   async function playSound() {
     console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync( require('../../assets/audio/strange.mp3')
-    );
-    setSound(sound);
-
+    const { sound } = await Audio.Sound.createAsync(audioSource);
+    setLocalSound(sound);
     console.log('Playing Sound');
     await sound.playAsync();
   }
 
   useEffect(() => {
-    return sound
+    return localSound
       ? () => {
           console.log('Unloading Sound');
-          sound.unloadAsync();
+          localSound.unloadAsync();
         }
       : undefined;
-  }, [sound]);
+  }, [localSound]);
 
   return (
     <ParallaxScrollView
@@ -48,8 +49,7 @@ export default function TabTwoScreen() {
 
       <Collapsible title="Audio à distance">
         <View style={styles.audioContainer}>
-          <Button title="Lecture" style={styles.audioController} onPress={playSound} />
-          <Button title="Pause" onPress={() => sound.pauseAsync()} style={styles.audioController} />
+          <Button title="Play Sound" onPress={playSound} />
         </View>
       </Collapsible>
     </ParallaxScrollView>

@@ -77,4 +77,5 @@ Ainsi que `expo-file-system` pour accéder aux fichiers en local du périphériq
 
 La librairie `expo-av` va être dans le futur remplacé par `expo-audio`, mais actuellement cette libraire n'est qu'en
 alpha et donc peut exposer l'application à des instabilités.
-C'est pourquoi nous allons pour le moment utiliser `expo-av` pour ce cas de figure.
+
+`expo-av` n'est ppas convaincante, passage sous `expo-audio`.
