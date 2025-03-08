@@ -62,7 +62,7 @@ export default function TabTwoScreen() {
         </View>
       </Collapsible>
 
-      <Collapsible title="Vidéo en local">
+      <Collapsible title="Vidéo en local de l'appplication">
         <View style={styles.videoContainer}>
           <VideoView
             style={styles.video}
@@ -82,6 +82,10 @@ export default function TabTwoScreen() {
             }}
           />
         </View>
+      </Collapsible>
+
+      <Collapsible title="Vidéo en local sur le périphérique">
+        <ThemedText>Pas possible sans Development build</ThemedText>
       </Collapsible>
     </ParallaxScrollView>
   );

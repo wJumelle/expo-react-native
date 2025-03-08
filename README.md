@@ -67,5 +67,7 @@ virtualisation soit activé sur votre pc.
 
 ## Intégration du module pour lire les vidéos en local
 
-Pour accéder aux fichiers en local via notre application nous allons avoir besoin de la librairie `expo-av` que nous installons
+Pour accéder aux fichiers en local de l'application nous allons avoir besoin de la librairie `expo-av` que nous installons
 avec `npx expo install expo-av`.
+
+Ainsi que `expo-file-system` pour accéder aux fichiers en local du périphérique sur lequel est exécuté l'app.
