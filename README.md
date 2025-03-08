@@ -65,9 +65,16 @@ la commande `npm install expo-dev-client`.
 4. Sinon à l'aide d'**Android Studio** il est possible de se créer un périphérique d'essai, mais il faut que la
 virtualisation soit activé sur votre pc.
 
-## Intégration du module pour lire les vidéos en local
+## Intégration du module pour lire les vidéos en local et en ligne
 
-Pour accéder aux fichiers en local de l'application nous allons avoir besoin de la librairie `expo-av` que nous installons
-avec `npx expo install expo-av`.
+Pour accéder aux fichiers en local de l'application nous allons avoir besoin de la librairie `expo-video` que nous installons
+avec `npx expo install expo-video`.
 
 Ainsi que `expo-file-system` pour accéder aux fichiers en local du périphérique sur lequel est exécuté l'app.
+
+
+## Intégration du module pour lire les vidéos en local et en ligne
+
+La librairie `expo-av` va être dans le futur remplacé par `expo-audio`, mais actuellement cette libraire n'est qu'en
+alpha et donc peut exposer l'application à des instabilités.
+C'est pourquoi nous allons pour le moment utiliser `expo-av` pour ce cas de figure.
