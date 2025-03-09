@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 const audioSource = require('../../assets/audio/strange.mp3');
 
 export default function TabTwoScreen() {
-  const [localSound, setLocalSound] = useState();
+  const [localSound, setLocalSound] = useState<Audio.Sound | null>(null);
 
   async function playSound() {
     console.log('Loading Sound');
